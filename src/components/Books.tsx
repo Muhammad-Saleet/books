@@ -9,6 +9,7 @@ function Books() {
   const [books, setBooks] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [sort, setSort] = useState('initial');
+  const [totalResults, setTotalResults] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
   const [page, setPage] = useState(0);
 
@@ -53,9 +54,11 @@ function Books() {
           return;
         }
         setNoResults(false);
+        setTotalResults(response.data.totalItems);
+        setMaxPage(Math.ceil(response.data.totalItems / booksPerPage));
+
         const bookList = extractBookList(response.data.items);
         setBooks(bookList);
-        setMaxPage(Math.ceil(response.data.totalItems / booksPerPage));
       })
       .catch((error) => {
         console.log(error);
@@ -126,7 +129,7 @@ function Books() {
       {noResults ? (
         <p>no results found</p>
       ) : (
-        <BooksList books={books} currentPage={page} maxPage={maxPage} paginate={paginate} />
+        <BooksList books={books} currentPage={page} maxPage={maxPage} totalResults={totalResults} paginate={paginate} />
       )}
     </div>
   );
