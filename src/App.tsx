@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
-import Header from './Header';
-import Books from './Books';
+import PageHeader from './components/PageHeader';
+import Books from './components/Books';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <div className="container-fluid text-center mb-5 px-0">
+      <PageHeader />
       <Books />
     </div>
   );
