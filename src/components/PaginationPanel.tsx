@@ -1,6 +1,12 @@
 import React from 'react';
 
-function PaginationPanel({ currentPage, maxPage, paginate }) {
+interface PaginationPanelProps {
+  currentPage: number;
+  maxPage: number;
+  paginate(newPage: number): void;
+}
+
+function PaginationPanel({ currentPage, maxPage, paginate }: PaginationPanelProps) {
   return (
     <nav aria-label="Page navigation">
       <ul className="pagination justify-content-center">

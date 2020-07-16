@@ -2,7 +2,23 @@ import React from 'react';
 import BookCard from './BookCard';
 import PaginationPanel from './PaginationPanel';
 
-function BooksList({ books, currentPage, maxPage, paginate }) {
+interface Book {
+  infoLink: string;
+  id: string;
+  thumbnail: string;
+  title: string;
+  publishedDate: string;
+  authors: string[];
+}
+
+interface BooksListProps {
+  books: Book[];
+  currentPage: number;
+  maxPage: number;
+  paginate(newPage: number): void;
+}
+
+function BooksList({ books, currentPage, maxPage, paginate }: BooksListProps) {
   return (
     <div className="container">
       <div className="row row-cols-1">

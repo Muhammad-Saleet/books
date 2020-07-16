@@ -1,6 +1,12 @@
 import React from 'react';
 
-function SearchArea({ handleSearchInput, searchBooks, handleSort }) {
+interface SearchAreaProps {
+  handleSearchInput(e: React.ChangeEvent<HTMLInputElement>): void;
+  searchBooks(): void;
+  handleSort(e: React.ChangeEvent<HTMLSelectElement>): void;
+}
+
+function SearchArea({ handleSearchInput, searchBooks, handleSort }: SearchAreaProps) {
   return (
     <div className="container w-50 mb-5">
       <div className="row">

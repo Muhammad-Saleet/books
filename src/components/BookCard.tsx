@@ -1,6 +1,19 @@
 import React from 'react';
 
-function BookCard({ book }) {
+interface Book {
+  infoLink: string;
+  id: string;
+  thumbnail: string;
+  title: string;
+  publishedDate: string;
+  authors: string[];
+}
+
+interface BookCardProps {
+  book: Book;
+}
+
+function BookCard({ book }: BookCardProps) {
   function renderThumbnail(thumbnail) {
     if (thumbnail) {
       return <img src={thumbnail} className="img-fluid" alt="Image Not Available" />;
@@ -11,7 +24,7 @@ function BookCard({ book }) {
     }
   }
 
-  function renderTitle(title) {
+  function renderTitle(title: string) {
     if (title) {
       return (
         <a className="font-weight-bold my-1" href={book.infoLink} target="_blank" rel="noreferrer">
@@ -23,7 +36,7 @@ function BookCard({ book }) {
     }
   }
 
-  function renderAuthors(authors) {
+  function renderAuthors(authors: string[]) {
     if (authors) {
       const authorNames = authors
         .reduce((names, name) => {
@@ -37,7 +50,7 @@ function BookCard({ book }) {
     }
   }
 
-  function renderPublishedDate(publishedDate) {
+  function renderPublishedDate(publishedDate: string) {
     if (publishedDate !== '0') {
       return <p className="my-1">{'published ' + publishedDate}</p>;
     } else {

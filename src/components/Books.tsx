@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SearchArea from './SearchArea';
 import axios from 'axios';
 import BooksList from './BooksList';
-import PaginationPanel from './PaginationPanel';
 
 function Books() {
   const booksPerPage = 20;
@@ -18,12 +17,12 @@ function Books() {
   }, [sort]);
 
   useEffect(() => {
-    if (page != 0) {
+    if (page !== 0) {
       fetchBooks();
     }
   }, [page]);
 
-  function handleSearchInput(e) {
+  function handleSearchInput(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchText(e.target.value);
   }
 
@@ -32,7 +31,7 @@ function Books() {
     else fetchBooks();
   }
 
-  function paginate(newPage) {
+  function paginate(newPage: number) {
     setPage(newPage);
   }
 
@@ -63,7 +62,7 @@ function Books() {
       });
   }
 
-  function handleSort(e) {
+  function handleSort(e: React.ChangeEvent<HTMLSelectElement>) {
     console.log(e.target.value);
     setSort(e.target.value);
   }
@@ -81,7 +80,7 @@ function Books() {
     });
   }
 
-  function extractBookList(items) {
+  function extractBookList(items: Array<any>) {
     const bookList = items.map((item) => {
       const book = {
         infoLink: item.volumeInfo.infoLink,
